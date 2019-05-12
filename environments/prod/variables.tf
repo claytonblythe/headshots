@@ -1,6 +1,6 @@
 variable "app_name" {
   type        = "string"
-  default     = "test_app"
+  default     = "headshots"
   description = "App name"
 }
 
