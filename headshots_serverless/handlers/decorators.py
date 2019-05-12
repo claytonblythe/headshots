@@ -21,7 +21,7 @@ def log_environment(f):
     @wraps(f)
     def wrapper(*args, **kwargs):
         logger.info("#ENVIRONMENT")
-        logger.info(msg=os.environ.__dict__)
+        logger.info(msg=os.environ.items())
         return f(*args, **kwargs)
 
     return wrapper

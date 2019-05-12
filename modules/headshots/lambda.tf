@@ -36,11 +36,6 @@ resource "aws_lambda_function" "hello_lambda" {
   handler = "hello.handler"
   runtime = "python3.6"
 
-  environment {
-    variables = {
-      greeting = "Hello"
-    }
-  }
 }
 
 resource "aws_lambda_permission" "allow_bucket" {
