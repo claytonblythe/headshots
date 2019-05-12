@@ -26,7 +26,9 @@ def log_environment(f):
 
     return wrapper
 
+
 def log_time(f):
+    @wraps(f)
     def wrapper(*args, **kw):
         # Before function call
         before_time = datetime.utcnow()
