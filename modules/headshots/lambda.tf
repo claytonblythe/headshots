@@ -27,7 +27,7 @@ resource "aws_iam_role" "iam_for_lambda" {
 }
 
 resource "aws_lambda_function" "hello_lambda" {
-  function_name = "hello"
+  function_name = "hello-${var.environment}"
 
   filename         = "${data.archive_file.handlers.output_path}"
   source_code_hash = "${data.archive_file.handlers.output_base64sha256}"

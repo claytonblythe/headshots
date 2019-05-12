@@ -2,3 +2,4 @@
 .terraform/
 ../setup/.terraform
 .idea
+node_modules
