@@ -2,7 +2,7 @@ provider "archive" {}
 
 data "archive_file" "handlers" {
   type        = "zip"
-  source_dir = "../../headshots_serverless/handlers"
+  source_dir = "../../headshots_serverless"
   output_path = "${path.module}/handlers.zip"
 }
 
