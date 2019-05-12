@@ -7,7 +7,7 @@ resource "aws_cloudwatch_log_group" "hello_lambda_log" {
 
 # See also the following AWS managed policy: AWSLambdaBasicExecutionRole
 resource "aws_iam_policy" "lambda_logging" {
-  name = "lambda_logging"
+  name = "lambda_logging-${var.environment}"
   path = "/"
   description = "IAM policy for logging from a lambda"
 
