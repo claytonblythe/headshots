@@ -1,0 +1,124 @@
+image:
+  name: hashicorp/terraform:light
+  entrypoint: [""]
+
+stages:
+  - test
+  - deploy
+
+test_dev:
+  stage: test
+  script:
+    - terraform --version
+    - cd environments/dev
+    - terraform init
+    - terraform plan
+
+test_dev_debug:
+  stage: test
+  script:
+    - terraform --version
+    - export TF_LOG=TRACE
+    - cd environments/dev
+    - terraform init
+    - terraform plan
+  only:
+    variables:
+      - $DEBUG
+
+test_stage:
+  stage: test
+  script:
+    - terraform --version
+    - cd environments/stage
+    - terraform init
+    - terraform plan
+
+test_stage_debug:
+  stage: test
+  script:
+    - terraform --version
+    - export TF_LOG=TRACE
+    - cd environments/stage
+    - terraform init
+    - terraform plan
+  only:
+    variables:
+      - $DEBUG
+
+test_prod:
+  stage: test
+  script:
+    - terraform --version
+    - cd environments/prod
+    - terraform init
+    - terraform plan
+  when: manual
+  only:
+    refs:
+      - release
+
+deploy_dev:
+  stage: deploy
+  script:
+    - terraform --version
+    - cd environments/dev
+    - terraform init
+    - terraform plan
+    - terraform apply -auto-approve
+
+deploy_dev_debug:
+  stage: deploy
+  script:
+    - terraform --version
+    - export TF_LOG=TRACE
+    - cd environments/dev
+    - terraform init
+    - terraform plan
+    - terraform apply -auto-approve
+  only:
+    variables:
+      - $DEBUG
+
+deploy_staging:
+  stage: deploy
+  script:
+    - terraform --version
+    - cd environments/stage
+    - terraform init
+    - terraform plan
+    - terraform apply -auto-approve
+  when:  manual
+  only:
+    refs:
+      - master
+      - release
+
+deploy_staging_debug:
+  stage: deploy
+  script:
+    - terraform --version
+    - export TF_LOG=TRACE
+    - cd environments/stage
+    - terraform init
+    - terraform plan
+    - terraform apply -auto-approve
+  when: manual
+  only:
+    variables:
+      - $DEBUG
+    refs:
+      - release
+
+deploy_prod:
+  stage: deploy
+  script:
+    - terraform --version
+    - cd environments/prod
+    - terraform init
+    - terraform plan
+    - terraform apply -auto-approve
+  when:  manual
+  only:
+    refs:
+      - release
