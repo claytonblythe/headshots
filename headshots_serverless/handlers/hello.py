@@ -1,6 +1,6 @@
 import os
 
-from decorators import log_event, log_environment, log_duration
+from .decorators import log_event, log_environment, log_duration
 
 @log_event
 @log_environment
