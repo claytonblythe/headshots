@@ -27,7 +27,7 @@ def log_environment(f):
     return wrapper
 
 
-def log_time(f):
+def log_duration(f):
     @wraps(f)
     def wrapper(*args, **kw):
         # Before function call
