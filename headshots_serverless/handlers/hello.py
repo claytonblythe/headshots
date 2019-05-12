@@ -1,11 +1,8 @@
-import logging
 import os
 
-import boto3
-
-logger = logging.getLogger()
-logger.setLevel(logging.INFO)
+from .decorators import log_event
 
 
+@log_event
 def handler(event, context):
     return "{} from Lambda!".format(os.environ['greeting'])
