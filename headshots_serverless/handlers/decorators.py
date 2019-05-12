@@ -33,6 +33,6 @@ def log_time(f):
         # Before function call
         before_time = datetime.utcnow()
         output = f(*args, **kw)
-        logger.info(f"Function {f.__name__} execution time: {(datetime.utcnow()-before_time).total_seconds()} s")
+        logger.info(f"Function {f.__name__} execution time: {int((datetime.utcnow()-before_time).total_seconds())} s")
         return output
     return wrapper
