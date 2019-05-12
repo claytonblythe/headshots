@@ -8,7 +8,7 @@ logger.setLevel(logging.INFO)
 def log_event(f):
     @wraps(f)
     def wrapper(*args, **kwargs):
-        logger.debug(msg=kwargs['event'])
+        logger.debug(msg=kwargs)
         return f(*args, **kwargs)
 
     return wrapper
