@@ -33,6 +33,7 @@ def log_duration(f):
         # Before function call
         begin_time = datetime.utcnow()
         output = f(*args, **kw)
-        logger.info(f"Function {f.__name__} execution time: {(datetime.utcnow()-begin_time).total_seconds()} s")
+        elapsed_time = (datetime.utcnow()-begin_time).total_seconds()
+        logger.info(f"Function {f.__name__} execution time: {elapsed_time} s")
         return output
     return wrapper
