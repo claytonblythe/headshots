@@ -1,6 +1,6 @@
 data "aws_caller_identity" "current" {}
 
-module "test_app" {
+module "headshots" {
   source              = "../../modules/headshots"
   environment         = "${var.environment}"
   aws_profile         = "${var.aws_profile}"
