@@ -1,8 +1,14 @@
-from .lambda_decorators import before
 import logging
+from functools import wraps
+
+logger = logging.getLogger()
+logger.setLevel(logging.INFO)
 
 
-@before
-def log_event(event, context):
-    logging.debug(event)
-    return event, context
+def log_event(f):
+    @wraps(f)
+    def wrapper(*args, **kwargs):
+        logger.debug(msg=kwargs['event'])
+        return f(*args, **kwargs)
+
+    return wrapper
