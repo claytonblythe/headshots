@@ -33,7 +33,7 @@ resource "aws_lambda_function" "hello_lambda" {
   source_code_hash = "${data.archive_file.handlers.output_base64sha256}"
 
   role    = "${aws_iam_role.iam_for_lambda.arn}"
-  handler = "headshots_serverless/hello.handler"
+  handler = "headshots_serverless/handlers/hello.handler"
   runtime = "python3.6"
 }
 
