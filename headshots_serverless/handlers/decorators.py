@@ -1,6 +1,7 @@
 import logging
 from functools import wraps
 import os
+from datetime import datetime
 
 logger = logging.getLogger()
 logger.setLevel(logging.INFO)
@@ -23,4 +24,13 @@ def log_environment(f):
         logger.info(msg=os.environ)
         return f(*args, **kwargs)
 
+    return wrapper
+
+def log_time(f):
+    def wrapper(*args, **kw):
+        # Before function call
+        before_time = datetime.utcnow()
+        output = f(*args, **kw)
+        logger.info(f"{f.__name__} execution time: {(datetime.utcnow()-before_time).total_seconds()} seconds")
+        return output
     return wrapper
