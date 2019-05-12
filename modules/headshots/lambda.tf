@@ -35,7 +35,6 @@ resource "aws_lambda_function" "hello_lambda" {
   role    = "${aws_iam_role.iam_for_lambda.arn}"
   handler = "hello.handler"
   runtime = "python3.6"
-
 }
 
 resource "aws_lambda_permission" "allow_bucket" {

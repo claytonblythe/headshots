@@ -13,7 +13,6 @@ def log_event(f):
         logger.info("#EVENT")
         logger.info(msg=args[0])
         return f(*args, **kwargs)
-
     return wrapper
 
 
@@ -23,7 +22,6 @@ def log_environment(f):
         logger.info("#ENVIRONMENT")
         logger.info(msg=os.environ.items())
         return f(*args, **kwargs)
-
     return wrapper
 
 
