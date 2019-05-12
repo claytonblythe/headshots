@@ -2,8 +2,8 @@ provider "archive" {}
 
 data "archive_file" "handlers" {
   type        = "zip"
-  source_dir = "../../headshots_serverless/handlers"
-  output_path = "${path.module}/handlers.zip"
+  source_dir = "../../headshots_serverless"
+  output_path = "${path.module}/headshots_serverless.zip"
 }
 
 
@@ -33,7 +33,7 @@ resource "aws_lambda_function" "hello_lambda" {
   source_code_hash = "${data.archive_file.handlers.output_base64sha256}"
 
   role    = "${aws_iam_role.iam_for_lambda.arn}"
-  handler = "hello.handler"
+  handler = "headshots_serverless/hello.handler"
   runtime = "python3.6"
 }
 
